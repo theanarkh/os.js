@@ -12,7 +12,7 @@
 
 var fs = require('fs');
 fs.writeFile('disk',Buffer.alloc(1024 * 1024 * 1024), function(err) {
-	if (err) {1
+	if (err) {1s
 		console.log(err)
 	}
 })
