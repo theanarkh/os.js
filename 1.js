@@ -16,4 +16,4 @@ fs.writeFile('disk',Buffer.alloc(1024 * 1024 * 1024), function(err) {
 		console.log(err)
 	}
 })
-12451111
+12451111111xxx
