@@ -16,4 +16,4 @@ fs.writeFile('disk',Buffer.alloc(1024 * 1024 * 1024), function(err) {
 		console.log(err)
 	}
 })
-123xx
+123xx	
