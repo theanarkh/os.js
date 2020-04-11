@@ -1,4 +1,5 @@
-var TASKNUM = 10;
+
+	var TASKNUM = 10;
 	var STATE = {
 		RUNNING: 0,
 		HANGON: 1,
@@ -6,10 +7,10 @@ var TASKNUM = 10;
 	};
 	var DEFAULTPRI = 10;
 	var lastPid = 0;
-	function Task() {
+	function Task(config = {}) {
 		this.pid = lastPid++;
 		this.state = STATE.RUNNING;
-		this.priority = DEFAULTPRI;
+		this.priority = config.priority || DEFAULTPRI;
 		this.executeTime = 0;
 	
 	}
@@ -29,9 +30,8 @@ var TASKNUM = 10;
 	function schedule() {
 		var i = 0;
 		TASKS = TASKS.sort(function(a, b) {
-			return a.priority < b.priority;
+			return b.priority - a.priority;
 		});
-		
 		while(i < TASKNUM) {
 			
 			current = TASKS[i];
@@ -42,7 +42,7 @@ var TASKNUM = 10;
 				var endTime = Date.now();
 				current.executeTime += endTime - startTime;
 				if ((endTime - startTime)  > RUNTIME) {
-					current.priority && current.priority--;
+					current.priority > 0 && current.priority--;
 				}
 				break;
 			}
@@ -126,9 +126,8 @@ function write(data) {
 }
 
 
-var task0 = new Task();
+var task0 = new Task({priority: -1});
 task0.run = function() {
-	this.priority = -1;
 	console.log('run 0');
 }
 var task1 = new Task();
